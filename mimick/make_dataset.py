@@ -45,7 +45,7 @@ def charseq(word, c2i):
 parser = argparse.ArgumentParser()
 parser.add_argument("--vectors", required=True, nargs="*", dest="vectors", help="Pickle file from which to get target word vectors")
 parser.add_argument("--w2v-format", dest="w2v_format", action="store_true", help="Vector file is in textual w2v format")
-parser.add_argument("--vocab", required=True, dest="vocab", help="File containing words for unlabeled test set")
+parser.add_argument("--vocab", required=True, nargs="*", dest="vocab", help="File containing words for unlabeled test set")
 parser.add_argument("--output", required=True, dest="output", help="Output filename (.pkl)")
 
 options = parser.parse_args()
@@ -55,8 +55,10 @@ training_instances = []
 test_instances = []
 
 # Read in the output vocab
-with codecs.open(options.vocab, "r", "utf-8") as f:
-    vocab = set([ line.strip() for line in f ])
+vocab = set()
+for filename in options.vocab:
+    with codecs.open(filename, "r", "utf-8") as f:
+        vocab.update(set([ line.strip() for line in f ]))
 
 # read embeddings file
 if options.w2v_format:
