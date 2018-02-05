@@ -84,7 +84,6 @@ for filename in options.vocab:
 
     # Test
     if len(vocab) > 0:
-        in_vocab = 0
         total = len(vocab)
         for v in vocab:
             if v not in words:
