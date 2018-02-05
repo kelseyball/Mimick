@@ -373,6 +373,7 @@ if __name__ == "__main__":
 
         root_logger.info("\n")
         root_logger.info("Epoch {} complete".format(epoch + 1))
+
         # here used to be a learning rate update, no longer supported in dynet 2.0
         print trainer.status()
 

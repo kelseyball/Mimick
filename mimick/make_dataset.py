@@ -51,6 +51,7 @@ parser.add_argument("--w2v-format", dest="w2v_format", action="store_true", help
 parser.add_argument("--vocab", required=True, nargs="*", dest="vocab", help="File(s) containing words for unlabeled test set")
 parser.add_argument("--output", required=True, dest="output", help="Output filename (.pkl)")
 
+
     options = parser.parse_args()
 
     c2i = {}
@@ -79,6 +80,7 @@ for filename in options.vocab:
             in_vocab += 1
         training_instances.append(Instance(charseq(word, c2i), emb))
     training_char_count = len(c2i)
+
     print "Total in Embeddings vocabulary:", len(words)
     print "Training set character count: ", training_char_count
 
